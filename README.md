@@ -188,7 +188,19 @@
 
 בנוסף,בנקודה האחרונה של המסלול הכנסו COMPONENT של BOX COLIDER 2D כדי למעשה ליצור פסילה של השחקן במקרה שכדורי המשוואות מגיעים אל סוף המסלול.  
 
- כדי להגיע אל הקוד לחץ [כאן](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/Path.cs)  
+ כדי להגיע אל הקוד לחץ [כאן](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/Path.cs)   
+ 
+ ## משוואות
+ כל משוואה בויה מחמישה כדורים חלולים אשר בתוכם מספרים , ובאחד מהם הסימן "?" . ולאחר מכך כדור צהוב המפריד בין כל משוואה ומשוואה כדי למנוע התבלבלות מצד השחקן.
+ המשוואות נוצרות באופן אקראי, נכנסות אל תוך LIST ולאחר מכן ב ZUMA SCRIPT נקראות אחת אחת לפי הסדר ומהירות יציאת הכדורים.  
+ הקוד בו אנו קוראים ליצירת כדורי המסלול כל פעם נמצא [כאן](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/Zuma.cs)   
+ כדי להגיע אל הקוד שבו נוצרות המשוואות לחץ [כאן](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/EquationMaker.cs) 
+ 
+## בנק המשוואות
+בנק המשוואות נוצר כך שיש בו מספרים אקראיים לחליטין בהתחלה, והוא מתעדכן כל פעם שנכנסת משוואה חדשה בצורה רנדומית. אבל,הוא גם מכניס כמה כדורים במיקום אקראי שהם התוצאות למשוואות שיש לנו במשחק. כך השחקן גם יחשוב יותר וגם ינסה לבדוק בראש כל התאמה אפשרית. בחירת הכדור מתבצעת ע"י הקלקת עכבר על אותו כדור ספציפי. ולשם כך נעזרנו ב BallOnClick SCRIPT.
+ כדי להגיע אל הקוד לחץ [כאן](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/BallOnClick.cs)  
+
+
 
 
 </div>
