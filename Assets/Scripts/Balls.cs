@@ -22,7 +22,8 @@ public class Balls : MonoBehaviour
              NextBall = balls[2];
              NextBall.movingprefab.GetComponent<BallMovement>().SolutionID="braker";
         }
-        else if(Zuma.prevBallColor=="yellow"){  //set a new color
+        //new equation, set a new color
+        else if(Zuma.prevBallColor=="yellow"){  
             NextBall = balls[Random.Range(0, balls.Count)];
             while (NextBall.colorID == "yellow" )
             {
@@ -32,7 +33,8 @@ public class Balls : MonoBehaviour
             NextBall.movingprefab.GetComponent<BallMovement>().SolutionID=solution;
            
         }
-        else{ // find balls with the same color 
+        // find balls with the same color 
+        else{ 
             NextBall = balls[Random.Range(0, balls.Count)];
             while (NextBall.colorID != Zuma.prevBallColor || NextBall.colorID == "yellow" )
             {

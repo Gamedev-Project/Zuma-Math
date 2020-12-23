@@ -1201,13 +1201,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquationManger: {fileID: 32886371}
   Solutions: {fileID: 740279500}
+  ThrowSpeed: 400
+  timer: 1
+  rate: 1
   CurrBall: {fileID: 153687412}
   CurrBallPoint: {fileID: 943794323}
   NextBallPoint: {fileID: 1639395205}
   NextBall: {fileID: 1039963409}
   spawnpoint: {fileID: 257290112}
-  timer: 1
-  rate: 1
   IsFinished: 0
 --- !u!1001 &1039963408
 PrefabInstance:

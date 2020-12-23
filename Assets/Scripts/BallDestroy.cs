@@ -33,7 +33,6 @@ public class BallDestroy : MonoBehaviour
                 {
                     if(BallMovement.ballMovement[i].SolutionID==SolutionID)
                     {
-
                         Destroy(BallMovement.ballMovement[i].gameObject);
                     }
                     else
@@ -48,7 +47,6 @@ public class BallDestroy : MonoBehaviour
                 {
                     if (BallMovement.ballMovement[i].SolutionID == SolutionID || BallMovement.ballMovement[i].SolutionID=="braker" )
                     {
-                        //Partical.instance.ShowPartical("parlama", BallMovement.ballMovement[i].transform.position);
 
                         Destroy(BallMovement.ballMovement[i].gameObject);
                     }
@@ -68,8 +66,5 @@ public class BallDestroy : MonoBehaviour
     }
     public void SetSolutionID(string sol){
         this.SolutionID=sol;
-    }
-    public void DEBUGERRR(){
-        Debug.Log("IM HEREEEE");
     }
 }

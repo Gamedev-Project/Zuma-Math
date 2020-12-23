@@ -5,9 +5,9 @@ using UnityEngine;
 public class EquationMaker : MonoBehaviour
 {
     public static EquationMaker instance; 
-    //public Random rnd = new Random();
     public string[] equation = new string[5];
-    // Start is called before the first frame update
+
+    
     private void Awake()
     {
         instance = this;
@@ -24,7 +24,7 @@ public class EquationMaker : MonoBehaviour
         return equation;
         
     }
-    private string SolveEquation(int x,int y,string action){
+    public string SolveEquation(int x,int y,string action){
         switch(action){
             case "+":
                 return (x+y).ToString();

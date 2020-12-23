@@ -9,7 +9,7 @@ public class SolutionManger : MonoBehaviour
     public List<string> Solution;
     private List<int> pos;
     private int temp;
-    private int count;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -19,17 +19,18 @@ public class SolutionManger : MonoBehaviour
                 
         List<GameObject> lst=AllChilds(gameObject);
         for(int i=0;i<lst.Count;i++){
-            string temp1=Random.Range(-9,18).ToString();
+            string temp1=Random.Range(-9,18).ToString(); //this is the range of our equation solutions
             lst[i].GetComponent<BallDestroy>().SetSolutionID(temp1);
             lst[i].GetComponentInChildren<TextMeshPro>().SetText(temp1);
         }
         pos=new List<int>();
+        int count=0; // nuber to be sure we do not get into an endless while loop
         for(int i=0;i<Solution.Count;i++){
             temp=Random.Range(1,lst.Count)-1;
             while(pos.Contains(temp)){
                 temp=Random.Range(1,lst.Count)-1;
                 count++;
-                if(count>=40){
+                if(count>=100){
                     break;
                 }
             }

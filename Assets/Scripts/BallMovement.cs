@@ -75,31 +75,7 @@ public class BallMovement : MonoBehaviour
             other.GetComponent<BallMovement>().IsMoving = true;
         }
     }
-    [System.Serializable]
-    public class Balls
-    {
-        public static Balls instance;   
-        public List<Ballprofile> balls;
 
-        private void Awake()
-        {
-            instance = this;
-        }
-
-        public Ballprofile NextBallSec()
-        {
-            Ballprofile NextBall = balls[Random.Range(0, balls.Count)];
-            return NextBall;
-        }
-
-        [System.Serializable]
-        public class Ballprofile
-        {
-            public string colorID;
-            public GameObject ballprefab;
-            public GameObject movingprefab;
-        }
-    }
 }
 
 
