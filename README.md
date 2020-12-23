@@ -186,7 +186,7 @@
 ## מסלול  
 יצרנו במשחק מסלול אשר ניתן לשנות אותו בנוחות משלב לשלב ע"י LINE RENDERER כך שאנו מכניסים נקודות במיקומים שונים והוא יוצר לנו את המסלול בדיוק לפני הדסר שאנו מכניסים ע"י הפונקציות שיצרנו DrawPath ו FindNextPoint.
 בנוסף,בנקודה האחרונה של המסלול הכנסו COMPONENT של BOX COLIDER 2D כדי למעשה ליצור פסילה של השחקן במקרה שכדורי המשוואות מגיעים אל סוף המסלול. 
- [המסלול](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/Path.cs)  
+ כדי להגיע אל הקוד לחץ [כאן](https://github.com/Gamedev-Project/Zuma-Math/blob/main/Assets/Scripts/Path.cs)  
 
 
 </div>
