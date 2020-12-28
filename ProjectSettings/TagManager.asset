@@ -7,6 +7,10 @@ TagManager:
   - ball
   - FxTemporaire
   - "biti\u015F"
+  - FlipRight
+  - FlipLeft
+  - FlipUp
+  - FlipDown
   layers:
   - Default
   - TransparentFX

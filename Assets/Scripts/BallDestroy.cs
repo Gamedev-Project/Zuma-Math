@@ -56,10 +56,7 @@ public class BallDestroy : MonoBehaviour
                     }
 
                 }
-
             }
-
-
         }
 
         Destroy(gameObject);

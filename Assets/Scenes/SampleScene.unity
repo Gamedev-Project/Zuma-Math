@@ -992,9 +992,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 814299806}
+  - component: {fileID: 814299807}
   m_Layer: 0
   m_Name: point -3
-  m_TagString: Untagged
+  m_TagString: FlipLeft
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,6 +1014,22 @@ Transform:
   m_Father: {fileID: 1607756851}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &814299807
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 814299805}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &907220960
 GameObject:
   m_ObjectHideFlags: 0
@@ -1300,9 +1317,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1044591315}
+  - component: {fileID: 1044591316}
   m_Layer: 0
   m_Name: point 6
-  m_TagString: Untagged
+  m_TagString: FlipRight
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1321,6 +1339,22 @@ Transform:
   m_Father: {fileID: 1607756851}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1044591316
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044591314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1059685075
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,9 +2129,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1927586335}
+  - component: {fileID: 1927586336}
   m_Layer: 0
   m_Name: "point 5\uF739"
-  m_TagString: Untagged
+  m_TagString: FlipDown
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2116,6 +2151,22 @@ Transform:
   m_Father: {fileID: 1607756851}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1927586336
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927586334}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &1975356946 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6096619812661548883, guid: 383946654fe6fa547b3773e49d29c69c,

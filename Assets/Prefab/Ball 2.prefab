@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMoving: 0
   speed: 1
+  SolutionID: 
   colorID: blue
 --- !u!1 &7505432264751082367
 GameObject:

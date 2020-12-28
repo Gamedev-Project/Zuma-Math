@@ -12,7 +12,7 @@ public class BallMovement : MonoBehaviour
     public float speed = 0.5f;
     public string SolutionID;
     public string colorID;
-
+    private Vector3 vec;
 
 
     private void Awake()
@@ -63,6 +63,18 @@ public class BallMovement : MonoBehaviour
         if (other.GetComponent<BallMovement>())
         {
             other.GetComponent<BallMovement>().IsMoving = true;
+        }
+        if(other.tag=="FlipDown"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, -90);
+        }
+        else if(other.tag=="FlipUp"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 90);
+        }
+        else if(other.tag=="FlipRight"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else if(other.tag=="FlipLeft"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180);
         }
     }
     
