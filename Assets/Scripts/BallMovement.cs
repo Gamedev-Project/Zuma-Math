@@ -9,14 +9,16 @@ public class BallMovement : MonoBehaviour
 
     private Transform target;
     public bool IsMoving = false;
-    public float speed = 0.5f;
+    public float speed;
     public string SolutionID;
     public string colorID;
     private Vector3 vec;
+    public BallMovement instance;
 
 
     private void Awake()
     {
+        instance=this;
         target = Path.instance.pathes[0].pointobject;
         IsMoving = true;
     }
@@ -37,6 +39,17 @@ public class BallMovement : MonoBehaviour
     {
         if (IsMoving)
         {
+            switch(EquationMaker.instance.getLevelnum()){
+                case 1:
+                    speed=1f;
+                    break;
+                case 2:
+                    speed=2f;
+                    break;
+                default:
+                    speed=1f;
+                    break;
+                }
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
             if (Vector2.Distance(transform.position, target.transform.position) < 0.1f)
             {

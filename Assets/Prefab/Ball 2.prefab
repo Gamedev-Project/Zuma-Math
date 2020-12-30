@@ -143,6 +143,7 @@ MonoBehaviour:
   speed: 1
   SolutionID: 9
   colorID: blue
+  instance: {fileID: 0}
 --- !u!1 &7505432264751082367
 GameObject:
   m_ObjectHideFlags: 0

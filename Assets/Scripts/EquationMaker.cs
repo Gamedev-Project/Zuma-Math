@@ -98,4 +98,7 @@ public class EquationMaker : MonoBehaviour
     public void SetLevelnum(int num){
         this.Levelnum=num;
     }
+    public int getLevelnum(){
+        return this.Levelnum;
+    }
 }

@@ -4,20 +4,31 @@ using UnityEngine;
 using System.Linq;
 using TMPro;
 
+
 public class BallDestroy : MonoBehaviour
 {
     public string SolutionID;
     public string colorID;
+    public static BallDestroy instance;
     private bool flag= false;
     public bool LevelFinished=false;
+    public string NextScene;
+    //private SceneManger sceneManger;
 
+    void Awake(){
+        instance = this;
+    }
     void Update() {
         if(BallMovement.ballMovement.Count==0&&Zuma.instance.IsFinished==true){
             LevelFinished=true;
+            //sceneManger.MoveToNextScene(NextScene);
         }
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.tag.StartsWith("Flip")){
+            return;
+        }
         if(other.tag=="ball")
         {
             if (other.GetComponent<BallMovement>().SolutionID == SolutionID)
@@ -53,7 +64,13 @@ public class BallDestroy : MonoBehaviour
                 {
                     if(BallMovement.ballMovement[i].SolutionID==SolutionID || BallMovement.ballMovement[i].SolutionID=="last"|| BallMovement.ballMovement[i].SolutionID=="braker")
                     {
-                        
+                         if( BallMovement.ballMovement[i].SolutionID=="last"){
+                        Debug.Log(BallMovement.ballMovement.Count);
+                        for (int t = findedindex - 1; t >= 0; t--)
+                      {
+                            BallMovement.ballMovement[t].IsMoving = !false;
+                      }
+                      }
                         Destroy(BallMovement.ballMovement[i].gameObject);
                     }
                     else
@@ -84,5 +101,8 @@ public class BallDestroy : MonoBehaviour
     }
     public void SetSolutionID(string sol){
         this.SolutionID=sol;
+    }
+    public bool getLevelFinished(){
+        return this.LevelFinished;
     }
 }
