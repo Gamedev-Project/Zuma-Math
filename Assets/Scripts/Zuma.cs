@@ -47,7 +47,7 @@ public class Zuma : MonoBehaviour
         if(timer<=0)
         {
         if(count==0){
-            equation=EquationManger.MakeEquation(1);
+            equation=EquationManger.MakeEquation(EquationMaker.instance.Levelnum);
             Solutions.AddSolution(equation[4]);
             Solutions.SetBank();
         }

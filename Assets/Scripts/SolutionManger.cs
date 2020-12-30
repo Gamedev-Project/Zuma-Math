@@ -24,7 +24,25 @@ public class SolutionManger : MonoBehaviour
                 
         lst=AllChilds(gameObject);
         for(int i=0;i<lst.Count;i++){
-            string temp1=Random.Range(-9,18).ToString(); //this is the range of our equation solutions
+            string temp1;
+            int level=EquationMaker.instance.Levelnum;
+            switch(level){
+                case 1: case 2: case 6:
+                    temp1=Random.Range(-8,19).ToString(); //-8 to 18
+                    break;
+                case 3:
+                    temp1=Random.Range(-18,19).ToString(); //-18 to 18
+                    break;
+                case 4:
+                    temp1=Random.Range(-8,82).ToString(); //-8 to 81
+                    break;
+                case 5: case 7:
+                    temp1=Random.Range(-81,82).ToString(); //-81 to 81
+                    break;
+                default:
+                    temp1=Random.Range(-81,82).ToString();
+                    break;
+            }
             lst[i].GetComponent<BallDestroy>().SetSolutionID(temp1);
             lst[i].GetComponentInChildren<TextMeshPro>().SetText(temp1);
         }

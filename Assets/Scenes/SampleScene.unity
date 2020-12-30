@@ -170,6 +170,7 @@ MonoBehaviour:
   - 
   - 
   - 
+  Levelnum: 6
 --- !u!1001 &56839141
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1226,7 +1227,7 @@ MonoBehaviour:
   NextBall: {fileID: 1039963409}
   NextBallPoint: {fileID: 1639395205}
   spawnpoint: {fileID: 257290112}
-  BallsToFinish: 18
+  BallsToFinish: 36
   IsFinished: 0
 --- !u!1001 &1039963408
 PrefabInstance:
