@@ -20,7 +20,12 @@ public class Balls : MonoBehaviour
         Ballprofile NextBall;
         if(flag){
              NextBall = balls[2];
-             NextBall.movingprefab.GetComponent<BallMovement>().SolutionID="braker";
+             if(Zuma.instance.BallsToFinish==0){
+                NextBall.movingprefab.GetComponent<BallMovement>().SolutionID="last";
+             }
+             else{
+                  NextBall.movingprefab.GetComponent<BallMovement>().SolutionID="braker";
+             }
         }
         //new equation, set a new color
         else if(Zuma.prevBallColor=="yellow"){  

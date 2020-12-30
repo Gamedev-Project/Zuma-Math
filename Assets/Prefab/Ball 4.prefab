@@ -126,7 +126,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.002518201, y: 0}
   serializedVersion: 2
-  m_Radius: 5
+  m_Radius: 7
 --- !u!114 &6173865053004516012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMoving: 0
   speed: 1
+  SolutionID: 1
   colorID: red
 --- !u!1 &9149221755718102018
 GameObject:
@@ -246,7 +247,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 33
+  m_text: 9
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

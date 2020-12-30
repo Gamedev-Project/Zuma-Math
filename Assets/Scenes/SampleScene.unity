@@ -1194,7 +1194,7 @@ Transform:
   m_GameObject: {fileID: 1033302043}
   m_LocalRotation: {x: 0, y: 0, z: 0.01745245, w: 0.99984777}
   m_LocalPosition: {x: -0, y: -0.305, z: 0}
-  m_LocalScale: {x: 1.19186, y: 1.19186, z: 1.19186}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1123204759}
   - {fileID: 943794323}
@@ -1223,9 +1223,10 @@ MonoBehaviour:
   rate: 1
   CurrBall: {fileID: 153687412}
   CurrBallPoint: {fileID: 943794323}
-  NextBallPoint: {fileID: 1639395205}
   NextBall: {fileID: 1039963409}
+  NextBallPoint: {fileID: 1639395205}
   spawnpoint: {fileID: 257290112}
+  BallsToFinish: 18
   IsFinished: 0
 --- !u!1001 &1039963408
 PrefabInstance:

@@ -13,9 +13,12 @@ public class Zuma : MonoBehaviour
     [SerializeField] private float rate;
     public GameObject CurrBall;
     public Transform CurrBallPoint;
-    public Transform NextBallPoint;
+    
     public GameObject NextBall;
+    public Transform NextBallPoint;
     public Transform spawnpoint;
+    [Tooltip("Need to be Divided by 6")]
+    public int BallsToFinish;
     public bool IsFinished = false; //If false the balls will stop coming out to the game path
     private int count=0; // Helps us identify when we have finished writing an entire equation
     private string[] equation=new string[5];
@@ -31,6 +34,14 @@ public class Zuma : MonoBehaviour
 
     private void Update()
     {
+        if(BallsToFinish==0){
+            IsFinished=true;
+        }
+        MouseMovement();
+        if (Input.GetMouseButtonDown(1))
+        {
+            ThrowColorfullBall();
+        }
         if (IsFinished) return;
         timer -= Time.deltaTime;
         if(timer<=0)
@@ -42,12 +53,6 @@ public class Zuma : MonoBehaviour
         }
             StartCoroutine(CreateBallMovement());
             timer = rate;
-        }
-      
-        MouseMovement();
-        if (Input.GetMouseButtonDown(1))
-        {
-            ThrowColorfullBall();
         }
     }
     public void MouseMovement()
@@ -83,7 +88,7 @@ public class Zuma : MonoBehaviour
         CurrBall.transform.position = CurrBallPoint.position;
         CurrBall.transform.position = CurrBallPoint.position;
 
-        NextBall = Instantiate(Balls.instance.NextBallSec(equation[4]).ballprefab, NextBallPoint.position, Quaternion.identity);
+        NextBall = Instantiate(Balls.instance.NextBallSec(SolutionManger.instance.getRandomFromBank()/*equation[4]*/).ballprefab, NextBallPoint.position, Quaternion.identity);
        
         NextBall.transform.SetParent(transform);
         
@@ -97,38 +102,43 @@ public class Zuma : MonoBehaviour
            {
             GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,"?",equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
             count++;
+            BallsToFinish--;
             break;
            }
         case 1: //make the "=" ball
            {
             GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[3],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
              count++;
+             BallsToFinish--;
              break;
            }
         case 2: 
            {
             GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[2],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
             count++;
+            BallsToFinish--;
             break;
            }
         case 3: // make the "+/-/*/ / " ball
            {
             GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[1],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
              count++;
+             BallsToFinish--;
              break;
            }
         case 4:
            {
             GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[0],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
-
+            BallsToFinish--;
              count++;
              break;
            }
            default: //make a yellow break ball
-           {        
-            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(true,"","").movingprefab, spawnpoint.position, Quaternion.identity); 
-             count=0;
-            break;
+           {   
+                BallsToFinish--;  
+                GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(true,"","").movingprefab, spawnpoint.position, Quaternion.identity); 
+                count=0;
+                break;
            }
        }
 

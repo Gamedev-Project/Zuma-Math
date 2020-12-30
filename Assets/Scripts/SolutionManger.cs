@@ -9,15 +9,20 @@ public class SolutionManger : MonoBehaviour
     public List<string> Solution;
     private List<int> pos;
     private int temp;
-    
+    public static SolutionManger instance;
+    private List<GameObject> lst;
     // Start is called before the first frame update
     void Start()
     {
         SetBank();
     }
+    void Awake(){
+        instance=this;
+
+    }
     public void SetBank(){
                 
-        List<GameObject> lst=AllChilds(gameObject);
+        lst=AllChilds(gameObject);
         for(int i=0;i<lst.Count;i++){
             string temp1=Random.Range(-9,18).ToString(); //this is the range of our equation solutions
             lst[i].GetComponent<BallDestroy>().SetSolutionID(temp1);
@@ -60,5 +65,8 @@ public class SolutionManger : MonoBehaviour
  
     public void AddSolution(string sol){
         this.Solution.Add(sol);
+    }
+    public string getRandomFromBank(){
+        return lst[Random.Range(0, lst.Count)].GetComponent<BallDestroy>().SolutionID;
     }
 }
