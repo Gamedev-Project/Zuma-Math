@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class EquationMaker : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class EquationMaker : MonoBehaviour
     {
         instance = this;
     }
-
+        void Update(){
+        this.transform.Find("CostumBankBall").GetComponent<TextMeshPro>().SetText(Zuma.instance.keypress);
+    }
     public string[] MakeEquation(int level){
     int x,y;
         equation[1]=ChooseAction(Levelnum);

@@ -18,7 +18,6 @@ public class SolutionManger : MonoBehaviour
     }
     void Awake(){
         instance=this;
-
     }
     public void SetBank(){
                 

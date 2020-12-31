@@ -26,7 +26,7 @@ public class Zuma : MonoBehaviour
     private string[] equation=new string[5];
     public string NextScene;
     public SceneManger sceneManger;
-    private string keypress="";
+    public string keypress="";
    
 
     private void Awake()
@@ -97,6 +97,11 @@ public class Zuma : MonoBehaviour
         if(Input.GetKeyDown("-")&&keypress==""){
             keypress+="-";
             //Debug.Log(keypress);
+        }
+        if(Input.GetKeyDown(KeyCode.Backspace)){
+            if(keypress!=""){
+                keypress=keypress.Remove(keypress.Length-1);
+            }
         }
     }
 
