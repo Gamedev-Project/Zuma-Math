@@ -8,14 +8,14 @@ public class Zuma : MonoBehaviour
 {
     public static Zuma instance;
     public static string prevBallColor;
-    [SerializeField] private EquationMaker EquationManger;
-    [SerializeField] private SolutionManger Solutions;
-    [SerializeField] private int ThrowSpeed;
+    [SerializeField] private EquationMaker EquationManger=null;
+    [SerializeField] private SolutionManger Solutions=null;
+    [SerializeField] private int ThrowSpeed=400;
     [SerializeField] private float timer;
-    [SerializeField] private float rate;
+    [SerializeField] private float rate=1f;
     public GameObject CurrBall;
     public Transform CurrBallPoint;
-    
+    public bool Pause;
     public GameObject NextBall;
     public Transform NextBallPoint;
     public Transform spawnpoint;
@@ -24,8 +24,6 @@ public class Zuma : MonoBehaviour
     public bool IsFinished = false; //If false the balls will stop coming out to the game path
     private int count=0; // Helps us identify when we have finished writing an entire equation
     private string[] equation=new string[5];
-    public string NextScene;
-    public SceneManger sceneManger;
     public string keypress="";
    
 
@@ -47,12 +45,10 @@ public class Zuma : MonoBehaviour
         if(BallsToFinish==0){
             IsFinished=true;
         }
-        if(BallDestroy.instance.getLevelFinished()){
-            sceneManger.MoveToNextScene(NextScene);
-        }
+        
         getKeys();
         MouseMovement();
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)&&!Pause)
         {
             ThrowColorfullBall();
         }
@@ -71,11 +67,14 @@ public class Zuma : MonoBehaviour
     }
     public void MouseMovement()
     {
-        Vector3 vec =Camera.main.ScreenToWorldPoint(Input.mousePosition)- transform.position;
-        float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
-        transform.localEulerAngles = new Vector3(0, 0, angle);
+        if(!Pause){
+            Vector3 vec =Camera.main.ScreenToWorldPoint(Input.mousePosition)- transform.position;
+            float angle = Mathf.Atan2(vec.y, vec.x) * Mathf.Rad2Deg;
+            transform.localEulerAngles = new Vector3(0, 0, angle);
+        }
     }
     public void getKeys(){
+        if(!Pause){
         for ( int i = 0; i < 10; ++i ){
             if (Input.GetKeyDown( "" + i )){
             if((keypress==""||keypress[0]=='-')&&i==0){
@@ -102,6 +101,7 @@ public class Zuma : MonoBehaviour
             if(keypress!=""){
                 keypress=keypress.Remove(keypress.Length-1);
             }
+        }
         }
     }
 
