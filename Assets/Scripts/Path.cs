@@ -18,7 +18,9 @@ public class Path : MonoBehaviour
     public Transform FindNextPoint(Transform point)
     {
         PathPointprofile findedpoint=pathes.Find(x => x.pointobject == point);
-        if (findedpoint == null) return null;
+        if (findedpoint == null){
+            return null;
+        }
         return findedpoint.nextpoint;
     }
 

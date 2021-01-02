@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using TMPro;
 
 public class BallMovement : MonoBehaviour
 {
+    public static BallMovement instance;
     public static List<BallMovement> ballMovement = new List<BallMovement>();
 
     private Transform target;
@@ -13,24 +15,25 @@ public class BallMovement : MonoBehaviour
     public string SolutionID;
     public string colorID;
     private Vector3 vec;
-    public BallMovement instance;
+    
+    public bool GameOver=false;
 
 
-    private void Awake()
+    void Awake()
     {
         instance=this;
+    }
+    void Start()
+    {
         target = Path.instance.pathes[0].pointobject;
         IsMoving = true;
-    }
-    private void Start()
-    {
         ballMovement.Add(this);
     }
-    private void OnDestroy()
+    void OnDestroy()
     {
         ballMovement.Remove(this);
     }
-    private void Update()
+    void Update()
     {
         Movement();
     }
@@ -39,30 +42,20 @@ public class BallMovement : MonoBehaviour
     {
         if (IsMoving)
         {
-            switch(EquationMaker.instance.getLevelnum()){
-                case 1:
-                    speed=1f;
-                    break;
-                case 2:
-                    speed=2f;
-                    break;
-                default:
-                    speed=1f;
-                    break;
-                }
             transform.position = Vector2.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
             if (Vector2.Distance(transform.position, target.transform.position) < 0.1f)
             {
                 Transform next = Path.instance.FindNextPoint(target);
                 if (next == null)
                 {
+                    BallDestroy.instance.GameOver();
                     IsMoving = false;
                     Destroy(gameObject);
                     Debug.Log("Movement Complete");
                     BallMovement.ballMovement.ForEach(x=>{
-                    x.IsMoving=false;
-                    Destroy(x.gameObject);
-                    Zuma.instance.IsFinished=true;
+                        x.IsMoving=false;
+                        Destroy(x.gameObject);
+                        Zuma.instance.IsFinished=true;
                     });
                     return;
                 }
@@ -100,7 +93,8 @@ public class BallMovement : MonoBehaviour
             other.GetComponent<BallMovement>().IsMoving = true;
         }
     }
+    public void SetSpeed(float num){
+        this.speed=num;
+    }
 
 }
-
-

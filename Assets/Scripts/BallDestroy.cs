@@ -12,13 +12,13 @@ public class BallDestroy : MonoBehaviour
     public static BallDestroy instance;
     private bool flag= false;
     public bool LevelFinished=false;
-    public string NextScene;
-    //private SceneManger sceneManger;
+    public bool GameOverBool=false;
 
     void Awake(){
         instance = this;
     }
     void Update() {
+        
         if(BallMovement.ballMovement.Count==0&&Zuma.instance.IsFinished==true){
             LevelFinished=true;
             //sceneManger.MoveToNextScene(NextScene);
@@ -96,6 +96,10 @@ public class BallDestroy : MonoBehaviour
                 }
                 }
             }
+            else{
+                Destroy(gameObject);
+                SceneManger.instance.DecreseLive();
+            }
         }
         Destroy(gameObject);
     }
@@ -104,5 +108,11 @@ public class BallDestroy : MonoBehaviour
     }
     public bool getLevelFinished(){
         return this.LevelFinished;
+    }
+    public void GameOver(){
+        this.GameOverBool=true;
+    }
+    public bool getGameOver(){
+        return GameOverBool;
     }
 }

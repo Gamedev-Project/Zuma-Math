@@ -15,7 +15,7 @@ public class Balls : MonoBehaviour
         instance = this;
     }
 
-    public Ballprofile myNextBall(bool flag,string sign,string solution)
+    public Ballprofile myNextBall(bool flag,string sign,string solution,float speed)
     {
         Ballprofile NextBall;
         if(flag){
@@ -50,8 +50,8 @@ public class Balls : MonoBehaviour
             NextBall.movingprefab.GetComponentInChildren<TextMeshPro>().SetText(sign);
         }
         Zuma.prevBallColor=NextBall.colorID;
+        NextBall.movingprefab.GetComponent<BallMovement>().speed=speed;
         return NextBall;
-
     }
     public Ballprofile NextBallSec(string sign)
     {

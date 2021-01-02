@@ -12,7 +12,7 @@ public class Zuma : MonoBehaviour
     [SerializeField] private SolutionManger Solutions=null;
     [SerializeField] private int ThrowSpeed=400;
     [SerializeField] private float timer;
-    [SerializeField] private float rate=1f;
+    [SerializeField] public float rate=1f;
     public GameObject CurrBall;
     public Transform CurrBallPoint;
     public bool Pause;
@@ -25,6 +25,7 @@ public class Zuma : MonoBehaviour
     private int count=0; // Helps us identify when we have finished writing an entire equation
     private string[] equation=new string[5];
     public string keypress="";
+    private float BallsSpeed=1f;
    
 
     private void Awake()
@@ -32,7 +33,9 @@ public class Zuma : MonoBehaviour
         instance = this;
         prevBallColor="yellow";
     }
-
+    void Start(){
+        SetMovementSpeed();
+    }
     private void Update()
     {   
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -150,40 +153,40 @@ public class Zuma : MonoBehaviour
     }*/
     public IEnumerator CreateBallMovement()
     {
-        yield return new WaitForSeconds(0.2f);
+       yield return new WaitForSeconds(0.2f);
        switch (count)
        {
         case 0: //make the "?" ball
            {
-            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,"?",equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
+            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,"?",equation[4],BallsSpeed).movingprefab, spawnpoint.position, Quaternion.identity);
             count++;
             BallsToFinish--;
             break;
            }
         case 1: //make the "=" ball
            {
-            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[3],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
+            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[3],equation[4],BallsSpeed).movingprefab, spawnpoint.position, Quaternion.identity);
              count++;
              BallsToFinish--;
              break;
            }
         case 2: 
            {
-            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[2],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
+            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[2],equation[4],BallsSpeed).movingprefab, spawnpoint.position, Quaternion.identity);
             count++;
             BallsToFinish--;
             break;
            }
         case 3: // make the "+/-/*/ / " ball
            {
-            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[1],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
+            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[1],equation[4],BallsSpeed).movingprefab, spawnpoint.position, Quaternion.identity);
              count++;
              BallsToFinish--;
              break;
            }
         case 4:
            {
-            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[0],equation[4]).movingprefab, spawnpoint.position, Quaternion.identity);
+            GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(false,equation[0],equation[4],BallsSpeed).movingprefab, spawnpoint.position, Quaternion.identity);
             BallsToFinish--;
              count++;
              break;
@@ -191,16 +194,27 @@ public class Zuma : MonoBehaviour
            default: //make a yellow break ball
            {   
                 BallsToFinish--;  
-                GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(true,"","").movingprefab, spawnpoint.position, Quaternion.identity); 
+                GameObject ComposedBall = Instantiate(Balls.instance.myNextBall(true,"","",BallsSpeed).movingprefab, spawnpoint.position, Quaternion.identity); 
                 count=0;
                 break;
            }
        }
-
-
-
-        
-
+    }
+    private void SetMovementSpeed(){
+          switch(SceneManger.instance.getDiff()){
+               case 0f:
+                BallsSpeed=1.5f;
+                    rate=0.6f;
+                    break;
+               case 1f:
+                    BallsSpeed=2f;
+                    rate=0.45f;
+                    break;
+               case 2f:
+                    BallsSpeed=3f;
+                    rate=0.3f;
+                    break;
+          }
     }
   
 }
