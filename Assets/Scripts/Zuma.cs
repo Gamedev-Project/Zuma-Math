@@ -51,7 +51,7 @@ public class Zuma : MonoBehaviour
         
         getKeys();
         MouseMovement();
-        if (Input.GetMouseButtonDown(1)&&!Pause)
+        if (Input.GetMouseButtonDown(0)&&!Pause)
         {
             ThrowColorfullBall();
         }

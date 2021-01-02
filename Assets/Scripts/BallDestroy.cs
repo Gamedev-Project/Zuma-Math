@@ -49,7 +49,6 @@ public class BallDestroy : MonoBehaviour
                 //if a match in balls is happening, this for loop stops movement in the destroied ball partners from right until their partners from left touching them
                 //and then the path keep moving
                 if(BallMovement.ballMovement.Count>12){
-                    Debug.Log(BallMovement.ballMovement.Count);
                     for (int i = findedindex - 1; i >= 0; i--)
                     {
                         BallMovement.ballMovement[i].IsMoving = false;
@@ -57,7 +56,6 @@ public class BallDestroy : MonoBehaviour
                 }
               
                 Destroy(other.gameObject);
-                Debug.Log("ColliderHappend");
                   
                 //both for loop here are stands for destroing the left and right matching balls when a match created
                 for (int i = findedindex+1; i <=BallMovement.ballMovement.Count-1; i++)
@@ -95,6 +93,7 @@ public class BallDestroy : MonoBehaviour
 
                 }
                 }
+                SceneManger.instance.AddPoints();
             }
             else{
                 Destroy(gameObject);

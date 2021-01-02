@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Globalization;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,9 +17,11 @@ public class SceneManger : MonoBehaviour
     public Slider AudioSlider;
     public Slider DifficultySlider;
     public GameObject Lives;
+    public GameObject Score;
     static private float AudioSliderVolume;
     static private float DifficultyLevel;
     private bool GAMEOVER=false;
+    private int StrikePoints=0;
 
     void Awake(){
         instance=this;
@@ -115,6 +118,7 @@ public class SceneManger : MonoBehaviour
         StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex));
     }
     public void DecreseLive(){
+        StrikePoints=0;
         Image[] Component= Lives.GetComponentsInChildren<Image>();
         foreach(Image i in Component){
             if(i.enabled==false){
@@ -135,6 +139,20 @@ public class SceneManger : MonoBehaviour
                 break;
             } 
         }
+    }
+    public void AddPoints(){
+        StrikePoints++;
+        string str=Score.GetComponent<TextMeshProUGUI>().text.Split(':')[1];
+        float temp=float.Parse(str, CultureInfo.InvariantCulture.NumberFormat);
+        Debug.Log(temp);
+        if(StrikePoints%3==0){
+            temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum()*2;
+        }
+        else{
+            temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum();
+        }
+        Debug.Log(temp);
+        Score.GetComponent<TextMeshProUGUI>().SetText("Score:"+temp);
     }
     public float getDiff(){
         return DifficultyLevel;
