@@ -80,16 +80,33 @@ public class Zuma : MonoBehaviour
         if(!Pause){
         for ( int i = 0; i < 10; ++i ){
             if (Input.GetKeyDown( "" + i )){
-            if((keypress==""||keypress[0]=='-')&&i==0){
-                continue;
+            if(i==0){
+                if(keypress==""){
+                    continue;
+                }
+                else if(keypress[0]=='-'){
+                    if(SceneManger.instance.getDiff()==2&&keypress.Length<4&&keypress.Length>1){
+                            keypress+=i;
+                    }
+                    if(keypress.Length<3&&keypress.Length>1&&SceneManger.instance.getDiff()!=2){
+                        keypress+=i;
+                    }
+                    else continue;
+                }
             }
                 if(keypress!=""&&keypress[0]=='-'){
                     if(keypress.Length<3){
                         keypress+=i;
                     }
+                    else if(SceneManger.instance.getDiff()==2&&keypress.Length<4){
+                        keypress+=i;
+                    }
                 }
                 else{
                     if(keypress.Length<2){
+                        keypress+=i;
+                    }
+                    else if(SceneManger.instance.getDiff()==2&&keypress.Length<3){
                         keypress+=i;
                     }
                 }

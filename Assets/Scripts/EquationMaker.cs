@@ -21,16 +21,41 @@ public class EquationMaker : MonoBehaviour
         equation[1]=ChooseAction(Levelnum);
         switch(level){
             case 1: case 2: case 4: case 6:
+            if(SceneManger.instance.getDiff()!=2){
                 x=Random.Range(1,10); //1 to 9
                 y=Random.Range(1,10); //1 to 9
+                //if(SceneManger.instance.getDiff==2){
+
+                //}
                 if(equation[1]=="/"){
                     while(((double)x/(double)y)%1!=0||y==0){
                         x=Random.Range(1,10); //1 to 9
                         y=Random.Range(1,10); //1 to 9
                     }
                 }
-                break;
+                
+            }
+            else{
+                if(equation[1]=="/"){
+                    x=Random.Range(1,900); //1 to 450
+                    y=Random.Range(1,900); //1 to 450
+                    while(((double)x/(double)y)%1!=0||y==0){
+                        x=Random.Range(1,900); //1 to 450
+                        y=Random.Range(1,900); //1 to 450
+                    }
+                }
+                else if(equation[1]=="*"){
+                    x=Random.Range(1,31); //1 to 30
+                    y=Random.Range(1,31); //1 to 30
+                }
+                else{
+                    x=Random.Range(1,451); //1 to 450
+                    y=Random.Range(1,451); //1 to 450
+                }
+            }
+            break;
             case 3: case 5: case 7:
+            if(SceneManger.instance.getDiff()!=2){
                 x=Random.Range(-9,10); //-9 to 9
                 y=Random.Range(-9,10); //-9 to 9
                 if(equation[1]=="/"){
@@ -39,6 +64,25 @@ public class EquationMaker : MonoBehaviour
                         y=Random.Range(-9,10); //-9 to 9
                     }
                 }
+            }
+            else{
+                if(equation[1]=="/"){
+                    x=Random.Range(-900,901); //-900 to 900
+                    y=Random.Range(-9,10); //-900 to 900
+                    while(((double)x/(double)y)%1!=0||y==0){
+                        x=Random.Range(-900,901); //-900 to 900
+                        y=Random.Range(-9,10); //-900 to 900
+                    }
+                }
+                else if(equation[1]=="*"){
+                    x=Random.Range(-30,31); //1 to 30
+                    y=Random.Range(-30,31); //1 to 30
+                }
+                else{
+                    x=Random.Range(-450,451); //-450 to 450
+                    y=Random.Range(-450,451); //-450 to 450
+                }
+            }
                 break;
             default:
                 x=0;

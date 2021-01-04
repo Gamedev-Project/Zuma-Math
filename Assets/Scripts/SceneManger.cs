@@ -18,6 +18,7 @@ public class SceneManger : MonoBehaviour
     public Slider DifficultySlider;
     public GameObject Lives;
     public GameObject Score;
+    public AudioClip GameOverAudio;
     static private float AudioSliderVolume;
     static private float DifficultyLevel;
     private bool GAMEOVER=false;
@@ -111,6 +112,8 @@ public class SceneManger : MonoBehaviour
     private void SetGameOver(){
         PauseGame();
         PausePanel.GetComponentInChildren<TextMeshProUGUI>().SetText("Game Over!");
+        this.GetComponent<AudioSource>().clip=GameOverAudio;
+        this.GetComponent<AudioSource>().Play();
     }
     public void RestartGame(){
         GAMEOVER=false;
