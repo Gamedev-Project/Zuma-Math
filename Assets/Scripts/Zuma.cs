@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ using UnityEngine.EventSystems;
 using System;
 using TMPro;
 
@@ -19,6 +20,7 @@ public class Zuma : MonoBehaviour
     public GameObject NextBall;
     public Transform NextBallPoint;
     public Transform spawnpoint;
+    public AudioClip BallGoingOut;
     [Tooltip("Need to be Divided by 6")]
     public int BallsToFinish;
     public bool IsFinished = false; //If false the balls will stop coming out to the game path
@@ -38,6 +40,7 @@ public class Zuma : MonoBehaviour
     }
     private void Update()
     {   
+        this.GetComponent<AudioSource>().volume=SceneManger.instance.AudioSlider.value;
         if(Input.GetKeyDown(KeyCode.Space)){
             if(keypress!=""&&keypress!="-"){
                 CurrBall.GetComponent<BallDestroy>().SetSolutionID(keypress);
@@ -53,7 +56,11 @@ public class Zuma : MonoBehaviour
         MouseMovement();
         if (Input.GetMouseButtonDown(0)&&!Pause)
         {
+            if (!EventSystem.current.IsPointerOverGameObject()){
+            this.GetComponent<AudioSource>().clip=BallGoingOut;
+            this.GetComponent<AudioSource>().Play();
             ThrowColorfullBall();
+            }
         }
         if (IsFinished) return;
         timer -= Time.deltaTime;
@@ -80,25 +87,23 @@ public class Zuma : MonoBehaviour
         if(!Pause){
         for ( int i = 0; i < 10; ++i ){
             if (Input.GetKeyDown( "" + i )){
-            if(i==0){
-                if(keypress==""){
-                    continue;
+                if(keypress=="0"){
+                  continue;
                 }
-                else if(keypress[0]=='-'){
-                    if(SceneManger.instance.getDiff()==2&&keypress.Length<4&&keypress.Length>1){
+                if(keypress!=""&&keypress[0]=='-'&&i==0){
+                    if(SceneManger.instance.getDiff()>0&&keypress.Length<4&&keypress.Length>1){
                             keypress+=i;
                     }
-                    if(keypress.Length<3&&keypress.Length>1&&SceneManger.instance.getDiff()!=2){
+                    if(keypress.Length<3&&keypress.Length>1&&SceneManger.instance.getDiff()==0){
                         keypress+=i;
                     }
                     else continue;
                 }
-            }
                 if(keypress!=""&&keypress[0]=='-'){
                     if(keypress.Length<3){
                         keypress+=i;
                     }
-                    else if(SceneManger.instance.getDiff()==2&&keypress.Length<4){
+                    else if(SceneManger.instance.getDiff()>0&&keypress.Length<4){
                         keypress+=i;
                     }
                 }
@@ -106,22 +111,20 @@ public class Zuma : MonoBehaviour
                     if(keypress.Length<2){
                         keypress+=i;
                     }
-                    else if(SceneManger.instance.getDiff()==2&&keypress.Length<3){
+                    else if(SceneManger.instance.getDiff()>0&&keypress.Length<3){
                         keypress+=i;
                     }
                 }
-                //Debug.Log(keypress);
             }
         }
         if(Input.GetKeyDown("-")&&keypress==""){
             keypress+="-";
-            //Debug.Log(keypress);
         }
-        if(Input.GetKeyDown(KeyCode.Backspace)){
-            if(keypress!=""){
-                keypress=keypress.Remove(keypress.Length-1);
+            if(Input.GetKeyDown(KeyCode.Backspace)){
+                if(keypress!=""){
+                    keypress=keypress.Remove(keypress.Length-1);
+                }
             }
-        }
         }
     }
 
@@ -228,8 +231,8 @@ public class Zuma : MonoBehaviour
                     rate=0.45f;
                     break;
                case 2f:
-                    BallsSpeed=3f;
-                    rate=0.3f;
+                    BallsSpeed=2f;
+                    rate=0.45f;
                     break;
           }
     }

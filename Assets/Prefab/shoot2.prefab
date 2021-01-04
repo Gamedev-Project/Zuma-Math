@@ -104,7 +104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 9
+  m_text: 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -309,7 +309,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08105fe55dd17473ba7e6ce59a41d3f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SolutionID: -6
+  SolutionID: 3
   colorID: blue
   LevelFinished: 0
   GameOverBool: 0
+  BallsTrueImpact: {fileID: 8300000, guid: 1a92811f0d4aef048b5ccc1756dcd830, type: 3}
+  BallsFalseImpact: {fileID: 8300000, guid: 0a209baaa28d4c7498e438ae324999bc, type: 3}
+  Explode: {fileID: 3455925888960150918, guid: 3dd4108fbbc5e96468213b2985c80b60, type: 3}

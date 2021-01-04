@@ -17,9 +17,98 @@ public class EquationMaker : MonoBehaviour
         this.transform.Find("CostumBankBall").GetComponent<TextMeshPro>().SetText(Zuma.instance.keypress);
     }
     public string[] MakeEquation(int level){
-    int x,y;
+        int x=0,y=0;
+        float Diff=SceneManger.instance.getDiff();
         equation[1]=ChooseAction(Levelnum);
-        switch(level){
+        switch(Diff){
+            case 0f:
+                switch(level){
+                case 1:
+                    x=Random.Range(1,10); //1 to 9
+                    y=Random.Range(1,10); //1 to 9
+                    break;
+                case 2:
+                    x=Random.Range(-9,10); //-9 to 9
+                    y=Random.Range(-9,10); //-9 to 9
+                    break;
+                case 3: case 4: case 5:
+                    if(equation[1]!="/"){
+                        x=Random.Range(-49,50); //-49 to 49
+                        y=Random.Range(-49,50); //-49 to 49
+                    }
+                    else if(equation[1]=="*"){
+                        x=Random.Range(-9,10); //-9 to 10
+                        y=Random.Range(-9,10); //-9 to 10
+                    }
+                    else{
+                        x=Random.Range(-98,99); //-98 to 98
+                        y=Random.Range(-98,99); //-98 to 98
+                        while(((double)x/(double)y)%1!=0||y==0){
+                            x=Random.Range(-98,99); //-98 to 98
+                            y=Random.Range(-98,99); //-98 to 98
+                        }
+                    }
+                    break;
+                }
+                break;
+            case 1f:
+                switch(level){
+                    case 1:
+                        x=Random.Range(-9,10); //-9 to 9
+                        y=Random.Range(-9,10); //-9 to 9
+                        break;
+                    case 2:
+                        x=Random.Range(-49,50); //-49 to 49
+                        y=Random.Range(-49,50); //-49 to 49
+                        break;
+                    case 3: case 4: case 5:
+                        if(equation[1]!="/"){
+                            x=Random.Range(-99,100); //-99 to 100
+                            y=Random.Range(-99,100); //-99 to 100
+                        }
+                        else if(equation[1]=="*"){
+                            x=Random.Range(-14,15); //-14 to 14
+                            y=Random.Range(-14,15); //-14 to 14
+                        }
+                        else{
+                            x=Random.Range(-99,100); //-99 to 100
+                            y=Random.Range(-99,100); //-99 to 100
+                            while(((double)x/(double)y)%1!=0||y==0){
+                                x=Random.Range(-99,100); //-99 to 100
+                                y=Random.Range(-99,100); //-99 to 100
+                            }
+                        }
+                        break;
+                }
+                break;
+            case 2f:
+                switch(level){
+                    case 1:
+                        x=Random.Range(-49,50); //-49 to 49
+                        y=Random.Range(-49,50); //-49 to 49
+                        break;
+                    case 3: case 4: case 5: case 2:
+                        if(equation[1]!="/"){
+                            x=Random.Range(-450,451); //-450 to 450
+                            y=Random.Range(-450,451); //-450 to 450
+                        }
+                        else if(equation[1]=="*"){
+                            x=Random.Range(-30,31); //-30 to 30
+                            y=Random.Range(-30,31); //-30 to 30
+                        }
+                        else{
+                            x=Random.Range(-450,451); //-450 to 450
+                            y=Random.Range(-450,451); //-450 to 450
+                            while(((double)x/(double)y)%1!=0||y==0){
+                                x=Random.Range(-450,451); //-450 to 450
+                                y=Random.Range(-450,451); //-450 to 450
+                            }
+                        }
+                        break;
+                }
+                break;
+        }
+        /*switch(level){
             case 1: case 2: case 4: case 6:
             if(SceneManger.instance.getDiff()!=2){
                 x=Random.Range(1,10); //1 to 9
@@ -88,7 +177,7 @@ public class EquationMaker : MonoBehaviour
                 x=0;
                 y=0;
                 break;
-        }
+        }*/
         equation[0]=x.ToString();
         equation[2]=y.ToString();
         equation[3]="=";
@@ -114,16 +203,16 @@ public class EquationMaker : MonoBehaviour
     }
         private string ChooseAction(int level){//add 1 to 2 | sub 3 to 5 | multiple 6 to 15 | divide 16 to 25
         int temp;
-        if(level==6){ //this level contains divide, add and sub
+        if(level==4){ //this level contains multiple, add and sub
             temp=Random.Range(1,26);
             while(5<temp&&temp<16){
                 temp=Random.Range(1,26);
             }
         }
-        else if(level<4){ //this level contains add and sub
+        else if(level<3){ //this level contains add and sub
            temp=Random.Range(1,6); 
         }
-        else if(level<6){ //this level contains multiple, add and sub
+        else if(level<4){ //this level contains divide, add and sub
             temp=Random.Range(1,16); 
         }
         else{ //this level contains multiple, divide, add and sub
@@ -135,9 +224,9 @@ public class EquationMaker : MonoBehaviour
             case 3:case 4:case 5:
                 return "-";
             case 6:case 7:case 8:case 9:case 10:case 11:case 12:case 13:case 14:case 15:
-                return "*";
-            case 16:case 17:case 18:case 19:case 20:case 21:case 22:case 23:case 24:case 25:
                 return "/";
+            case 16:case 17:case 18:case 19:case 20:case 21:case 22:case 23:case 24:case 25:
+                return "*";
             default:
                 return "+";
         }

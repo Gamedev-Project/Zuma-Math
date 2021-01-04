@@ -13,6 +13,9 @@ public class BallDestroy : MonoBehaviour
     private bool flag= false;
     public bool LevelFinished=false;
     public bool GameOverBool=false;
+    public AudioClip BallsTrueImpact;
+    public AudioClip BallsFalseImpact;
+    public Transform Explode;
 
     void Awake(){
         instance = this;
@@ -69,7 +72,13 @@ public class BallDestroy : MonoBehaviour
                             BallMovement.ballMovement[t].IsMoving = !false;
                       }
                       }
-                        Destroy(BallMovement.ballMovement[i].gameObject);
+                        if(BallMovement.ballMovement[i].SolutionID=="braker"){
+                          Destroy(BallMovement.ballMovement[i].gameObject);
+                          break;
+                      }
+                      else{
+                          Destroy(BallMovement.ballMovement[i].gameObject);
+                      }
                     }
                     else
                     {
@@ -85,6 +94,7 @@ public class BallDestroy : MonoBehaviour
                     {
 
                         Destroy(BallMovement.ballMovement[i].gameObject);
+                        
                     }
                     else
                     {
@@ -93,11 +103,17 @@ public class BallDestroy : MonoBehaviour
 
                 }
                 }
+                Instantiate(Explode,other.transform.position,other.transform.rotation);
                 SceneManger.instance.AddPoints();
+                Zuma.instance.GetComponent<AudioSource>().clip=BallsTrueImpact;
+                Zuma.instance.GetComponent<AudioSource>().Play();
+                
             }
             else{
                 Destroy(gameObject);
                 SceneManger.instance.DecreseLive();
+                Zuma.instance.GetComponent<AudioSource>().clip=BallsFalseImpact;
+                Zuma.instance.GetComponent<AudioSource>().Play();
             }
         }
         Destroy(gameObject);

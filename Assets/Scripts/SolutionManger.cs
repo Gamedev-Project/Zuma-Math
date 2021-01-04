@@ -23,9 +23,48 @@ public class SolutionManger : MonoBehaviour
                 
         lst=AllChilds(gameObject);
         for(int i=0;i<lst.Count;i++){
-            string temp1;
+            string temp1="";
             int level=EquationMaker.instance.Levelnum;
-            if(SceneManger.instance.getDiff()!= 2){
+            float Diff=SceneManger.instance.getDiff();
+            switch(Diff){
+                case 0f:
+                    switch(level){
+                        case 1:
+                            temp1=Random.Range(-8,19).ToString(); //-8 to 18
+                            break;
+                        case 2:
+                            temp1=Random.Range(-18,19).ToString(); //-18 to 18
+                            break;
+                        case 3:case 4:case 5:
+                            temp1=Random.Range(-98,99).ToString(); //-98 to 98
+                            break;
+                    }
+                    break;
+                case 1f:
+                    switch(level){
+                        case 1:
+                            temp1=Random.Range(-18,19).ToString(); //-18 to 18
+                            break;
+                        case 2: case 3:
+                            temp1=Random.Range(-98,99).ToString(); //-98 to 98
+                            break;
+                        case 4:case 5:
+                            temp1=Random.Range(-198,199).ToString(); //-198 to 198
+                            break;
+                    }
+                    break;
+                case 2f:
+                    switch(level){
+                        case 1:
+                            temp1=Random.Range(-98,99).ToString(); //-98 to 98
+                            break;
+                        case 2: case 3: case 4:case 5:
+                            temp1=Random.Range(-900,901).ToString(); //-900 to 900
+                            break;
+                    }
+                    break;
+            }
+            /*if(SceneManger.instance.getDiff()!= 2){
                 switch(level){
                     case 1: case 2: case 6:
                         temp1=Random.Range(-8,19).ToString(); //-8 to 18
@@ -43,8 +82,7 @@ public class SolutionManger : MonoBehaviour
                         temp1=Random.Range(-81,82).ToString();
                         break;
                 }
-            }
-            temp1=Random.Range(-900,901).ToString();
+            }*/
             lst[i].GetComponent<BallDestroy>().SetSolutionID(temp1);
             lst[i].GetComponentInChildren<TextMeshPro>().SetText(temp1);
         }

@@ -19,10 +19,14 @@ public class SceneManger : MonoBehaviour
     public GameObject Lives;
     public GameObject Score;
     public AudioClip GameOverAudio;
+    public GameObject NameInputField;
+    public GameObject ParaohDialog=null;
     static private float AudioSliderVolume;
     static private float DifficultyLevel;
+    static private string PlayerName;
     private bool GAMEOVER=false;
     private int StrikePoints=0;
+    private bool MovementComplete=true;
 
     void Awake(){
         instance=this;
@@ -31,22 +35,27 @@ public class SceneManger : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex!=0){
             AudioSlider.value=AudioSliderVolume;
             DifficultySlider.interactable=false;
-            DifficultySlider.GetComponentInChildren<TextMeshProUGUI>().SetText("Go to Main Menu to change Difficulty!");
+            DifficultySlider.GetComponentInChildren<TextMeshProUGUI>().SetText("For Name and Difficulty Change, Go to Main Menu!");
         }
         else{
             DifficultySlider.value=0;
         }
         DifficultySlider.value=DifficultyLevel;
+        NameInputField.GetComponent<TMP_InputField>().characterLimit=13;
     }
     void Update(){
         if(SceneManager.GetActiveScene().buildIndex>=1){
             if(BallDestroy.instance.getGameOver()){
+            if(MovementComplete){
+                MovementComplete=false;
                 GAMEOVER=true;
                 SetGameOver();
-                return;
+                Time.timeScale = 1;
+            }
+                //return;
                 //StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex+1));
             }
-            if(BallDestroy.instance.getLevelFinished()){
+            else if(BallDestroy.instance.getLevelFinished()){
                 StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex+1));
             }
         }
@@ -75,6 +84,7 @@ public class SceneManger : MonoBehaviour
     IEnumerator NextLevel(int Level){
         AudioSliderVolume=AudioSlider.value;
         DifficultyLevel=DifficultySlider.value;
+        PlayerName=NameInputField.GetComponent<TMP_InputField>().text;
 
         transition.SetTrigger("Start");
 
@@ -142,20 +152,20 @@ public class SceneManger : MonoBehaviour
                 break;
             } 
         }
+        StartCoroutine(PopDialog(false));
     }
     public void AddPoints(){
         StrikePoints++;
         string str=Score.GetComponent<TextMeshProUGUI>().text.Split(':')[1];
         float temp=float.Parse(str, CultureInfo.InvariantCulture.NumberFormat);
-        Debug.Log(temp);
         if(StrikePoints%3==0){
             temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum()*2;
         }
         else{
             temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum();
         }
-        Debug.Log(temp);
         Score.GetComponent<TextMeshProUGUI>().SetText("Score:"+temp);
+        StartCoroutine(PopDialog(true));
     }
     public float getDiff(){
         return DifficultyLevel;
@@ -164,5 +174,57 @@ public class SceneManger : MonoBehaviour
         GAMEOVER=false;
         ResumeGame();
         StartCoroutine(NextLevel(0));
+    }
+    public void OnValueChanged(){
+        if(SceneManager.GetActiveScene().buildIndex!=0){
+            if(PlayerName!=null){
+                NameInputField.GetComponent<TMP_InputField>().text=PlayerName;
+            }
+            else{
+                NameInputField.GetComponent<TMP_InputField>().text="";
+            }
+        }
+    }
+    IEnumerator PopDialog(bool Mood){
+        int x=Random.Range(1,4);
+        string temp;
+        if(PlayerName==null){
+            temp="";
+        }
+        else{
+            temp=PlayerName;
+        }
+        if(Mood){
+        switch(x){
+            case 1:
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="Good job "+temp+". Youre Awesome!";
+                break;
+            case 2:
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="Wow, thats some Serious Math Skills "+temp+"!";
+                break;
+            case 3:
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="Youre one more step to victory "+temp+"!";
+                break;
+        }
+            ParaohDialog.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            ParaohDialog.SetActive(false);
+        }
+        else{
+        switch(x){
+            case 1:
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="Hey hey be careful "+temp+"!";
+                break;
+            case 2:
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="Thats not a good Work there "+temp+"..";
+                break;
+            case 3:
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="What are you doing "+temp+"?!";
+                break;
+        }
+            ParaohDialog.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            ParaohDialog.SetActive(false);
+        }
     }
 }

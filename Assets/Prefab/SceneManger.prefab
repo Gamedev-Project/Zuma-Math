@@ -500,6 +500,11 @@ MonoBehaviour:
   PausePanel: {fileID: 0}
   AudioSlider: {fileID: 0}
   DifficultySlider: {fileID: 0}
+  Lives: {fileID: 0}
+  Score: {fileID: 0}
+  GameOverAudio: {fileID: 0}
+  NameInputField: {fileID: 0}
+  ParaohDialog: {fileID: 0}
 --- !u!82 &7990872556400399849
 AudioSource:
   m_ObjectHideFlags: 0
