@@ -82,6 +82,18 @@ public class BallMovement : MonoBehaviour
         else if(other.tag=="FlipLeft"&&colorID=="yellow"){
             this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 180);
         }
+        else if(other.tag=="FlipRightDown"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, -45);
+        }
+        else if(other.tag=="FlipRightUp"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 45);
+        }
+        else if(other.tag=="FlipLeftDown"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, -135);
+        }
+        else if(other.tag=="FlipLefttUp"&&colorID=="yellow"){
+            this.GetComponent<Transform>().rotation = Quaternion.Euler(0, 0, 135);
+        }
     }
     
     private void OnTriggerStay2D(Collider2D other)

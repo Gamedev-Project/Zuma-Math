@@ -165,7 +165,6 @@ public class Zuma : MonoBehaviour
         //CurrBall = NextBall;
         //CurrBall.transform.position = CurrBallPoint.position;
         CurrBall.transform.position = CurrBallPoint.position;
-
         CurrBall = Instantiate(Balls.instance.NextBallSec(num).ballprefab, NextBallPoint.position, Quaternion.identity);
        Debug.Log("IM HERE");
         CurrBall.transform.SetParent(transform);

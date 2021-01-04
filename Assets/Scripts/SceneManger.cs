@@ -56,7 +56,12 @@ public class SceneManger : MonoBehaviour
                 //StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex+1));
             }
             else if(BallDestroy.instance.getLevelFinished()){
-                StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex+1));
+                if(SceneManager.GetActiveScene().buildIndex==5){
+                StartCoroutine(NextLevel(0));
+                }
+                else{
+                    StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex+1));
+                }
             }
         }
         this.GetComponent<AudioSource>().volume=AudioSlider.value;

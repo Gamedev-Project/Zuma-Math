@@ -36,7 +36,7 @@ public class EquationMaker : MonoBehaviour
                         x=Random.Range(-49,50); //-49 to 49
                         y=Random.Range(-49,50); //-49 to 49
                     }
-                    else if(equation[1]=="*"){
+                    if(equation[1]=="*"){
                         x=Random.Range(-9,10); //-9 to 10
                         y=Random.Range(-9,10); //-9 to 10
                     }
@@ -66,7 +66,7 @@ public class EquationMaker : MonoBehaviour
                             x=Random.Range(-99,100); //-99 to 100
                             y=Random.Range(-99,100); //-99 to 100
                         }
-                        else if(equation[1]=="*"){
+                        if(equation[1]=="*"){
                             x=Random.Range(-14,15); //-14 to 14
                             y=Random.Range(-14,15); //-14 to 14
                         }
@@ -92,7 +92,7 @@ public class EquationMaker : MonoBehaviour
                             x=Random.Range(-450,451); //-450 to 450
                             y=Random.Range(-450,451); //-450 to 450
                         }
-                        else if(equation[1]=="*"){
+                        if(equation[1]=="*"){
                             x=Random.Range(-30,31); //-30 to 30
                             y=Random.Range(-30,31); //-30 to 30
                         }

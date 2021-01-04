@@ -11,6 +11,10 @@ TagManager:
   - FlipLeft
   - FlipUp
   - FlipDown
+  - FlipRightDown
+  - FlipRightUp
+  - FlipLeftDown
+  - FlipLefttUp
   layers:
   - Default
   - TransparentFX
