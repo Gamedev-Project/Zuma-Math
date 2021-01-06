@@ -24,6 +24,7 @@ public class SceneManger : MonoBehaviour
     static private float AudioSliderVolume;
     static private float DifficultyLevel;
     static private string PlayerName;
+    static private float ScoreNum;
     private bool GAMEOVER=false;
     private int StrikePoints=0;
     private bool MovementComplete=true;
@@ -36,13 +37,16 @@ public class SceneManger : MonoBehaviour
             AudioSlider.value=AudioSliderVolume;
             DifficultySlider.interactable=false;
             DifficultySlider.GetComponentInChildren<UnityEngine.UI.Text>().text="<color=#feae34>For Name and Difficulty Change, Go to Main Menu!</color>";
-
+            if(ScoreNum!=null){
+                Score.GetComponent<TextMeshProUGUI>().SetText("Score:"+ScoreNum);
+            }
         }
         else{
             DifficultySlider.value=0;
         }
         DifficultySlider.value=DifficultyLevel;
         NameInputField.GetComponent<TMP_InputField>().characterLimit=13;
+
     }
     void Update(){
         if(SceneManager.GetActiveScene().buildIndex>=1){
@@ -163,7 +167,13 @@ public class SceneManger : MonoBehaviour
     public void AddPoints(){
         StrikePoints++;
         string str=Score.GetComponent<TextMeshProUGUI>().text.Split(':')[1];
-        float temp=float.Parse(str, CultureInfo.InvariantCulture.NumberFormat);
+        float temp;
+        if(ScoreNum!=null){
+            temp=ScoreNum;
+        }
+        else{
+            temp=float.Parse(str, CultureInfo.InvariantCulture.NumberFormat);
+        }
         if(StrikePoints%3==0){
             temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum()*2;
             LifeBonus();
@@ -172,6 +182,7 @@ public class SceneManger : MonoBehaviour
             temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum();
         }
         Score.GetComponent<TextMeshProUGUI>().SetText("Score:"+temp);
+        ScoreNum=temp;
         StartCoroutine(PopDialog(true));
     }
     public float getDiff(){
