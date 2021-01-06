@@ -35,7 +35,8 @@ public class SceneManger : MonoBehaviour
         if(SceneManager.GetActiveScene().buildIndex!=0){
             AudioSlider.value=AudioSliderVolume;
             DifficultySlider.interactable=false;
-            DifficultySlider.GetComponentInChildren<TextMeshProUGUI>().SetText("For Name and Difficulty Change, Go to Main Menu!");
+            DifficultySlider.GetComponentInChildren<UnityEngine.UI.Text>().text="<color=#feae34>For Name and Difficulty Change, Go to Main Menu!</color>";
+
         }
         else{
             DifficultySlider.value=0;
@@ -102,13 +103,13 @@ public class SceneManger : MonoBehaviour
         
 		switch(DifficultySlider.value){
             case 0:
-                DifficultySlider.GetComponentInChildren<TextMeshProUGUI>().SetText("Easy");
+                DifficultySlider.GetComponentInChildren<UnityEngine.UI.Text>().text="<color=#feae34>Easy</color>";
                 break;
             case 1:
-                DifficultySlider.GetComponentInChildren<TextMeshProUGUI>().SetText("Medium");
+                DifficultySlider.GetComponentInChildren<UnityEngine.UI.Text>().text="<color=#feae34>Medium</color>";
                 break;
             case 2:
-                DifficultySlider.GetComponentInChildren<TextMeshProUGUI>().SetText("Hard");
+                DifficultySlider.GetComponentInChildren<UnityEngine.UI.Text>().text="<color=#feae34>Hard</color>";
                 break;
         }
 	}
@@ -165,6 +166,7 @@ public class SceneManger : MonoBehaviour
         float temp=float.Parse(str, CultureInfo.InvariantCulture.NumberFormat);
         if(StrikePoints%3==0){
             temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum()*2;
+            LifeBonus();
         }
         else{
             temp+=25*(getDiff()+1)*EquationMaker.instance.getLevelnum();
@@ -211,8 +213,11 @@ public class SceneManger : MonoBehaviour
                 ParaohDialog.GetComponent<TextMeshProUGUI>().text="Youre one more step to victory "+temp+"!";
                 break;
         }
+            if(Mood&&StrikePoints%3==0){
+                ParaohDialog.GetComponent<TextMeshProUGUI>().text="You got a Life and points Bonus "+temp+" !";
+            }
             ParaohDialog.SetActive(true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             ParaohDialog.SetActive(false);
         }
         else{
@@ -228,8 +233,26 @@ public class SceneManger : MonoBehaviour
                 break;
         }
             ParaohDialog.SetActive(true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.5f);
             ParaohDialog.SetActive(false);
+        }
+    }
+    public void LifeBonus(){
+        Image[] Component= Lives.GetComponentsInChildren<Image>();
+        int count=1;
+        foreach(Image i in Component){
+            if(i.enabled==true){
+                count++;
+            }
+        }
+        foreach(Image i in Component){
+            if(count!=0){
+                i.enabled=true;
+                count--;
+            }
+            else{
+                i.enabled=false;
+            }
         }
     }
 }
