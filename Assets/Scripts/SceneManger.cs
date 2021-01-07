@@ -25,6 +25,7 @@ public class SceneManger : MonoBehaviour
     static private float DifficultyLevel;
     static private string PlayerName;
     static private float ScoreNum;
+    static private float ScorePerLevel;
     private bool GAMEOVER=false;
     private int StrikePoints=0;
     private bool MovementComplete=true;
@@ -37,12 +38,14 @@ public class SceneManger : MonoBehaviour
             AudioSlider.value=AudioSliderVolume;
             DifficultySlider.interactable=false;
             DifficultySlider.GetComponentInChildren<UnityEngine.UI.Text>().text="<color=#feae34>For Name and Difficulty Change, Go to Main Menu!</color>";
+            ScorePerLevel=ScoreNum;
             if(ScoreNum!=null){
                 Score.GetComponent<TextMeshProUGUI>().SetText("Score:"+ScoreNum);
             }
         }
         else{
             DifficultySlider.value=0;
+            ScoreNum=0;
         }
         DifficultySlider.value=DifficultyLevel;
         NameInputField.GetComponent<TMP_InputField>().characterLimit=13;
@@ -136,6 +139,7 @@ public class SceneManger : MonoBehaviour
         this.GetComponent<AudioSource>().Play();
     }
     public void RestartGame(){
+        ScoreNum=ScorePerLevel;
         GAMEOVER=false;
         ResumeGame();
         StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex));
