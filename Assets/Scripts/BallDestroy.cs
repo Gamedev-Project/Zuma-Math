@@ -103,7 +103,7 @@ public class BallDestroy : MonoBehaviour
 
                 }
                 }
-                Instantiate(Explode,other.transform.position,other.transform.rotation);
+                StartCoroutine(Explosion(other));
                 SceneManger.instance.AddPoints();
                 Zuma.instance.GetComponent<AudioSource>().clip=BallsTrueImpact;
                 Zuma.instance.GetComponent<AudioSource>().Play();
@@ -129,5 +129,10 @@ public class BallDestroy : MonoBehaviour
     }
     public bool getGameOver(){
         return GameOverBool;
+    }
+    private IEnumerator Explosion(Collider2D other){
+        Transform temp=Instantiate(Explode,other.transform.position,other.transform.rotation);
+        yield return new WaitForSeconds(2f);
+        Destroy(temp);
     }
 }

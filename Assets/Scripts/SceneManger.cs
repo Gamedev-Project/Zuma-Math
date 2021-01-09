@@ -19,6 +19,7 @@ public class SceneManger : MonoBehaviour
     public GameObject Lives;
     public GameObject Score;
     public AudioClip GameOverAudio;
+    public AudioClip GrandFinale;
     public GameObject NameInputField;
     public GameObject ParaohDialog=null;
     static private float AudioSliderVolume;
@@ -65,7 +66,24 @@ public class SceneManger : MonoBehaviour
             }
             else if(BallDestroy.instance.getLevelFinished()){
                 if(SceneManager.GetActiveScene().buildIndex==5){
-                StartCoroutine(NextLevel(0));
+                    if(MovementComplete){
+                        MovementComplete=false;
+                        GAMEOVER=true;
+                        SetGameOver();
+                        Time.timeScale = 1;
+                        string name;
+                        if(PlayerName==null){
+                            name="";
+                        }
+                        else{
+                            name=PlayerName;
+                        }
+                        PausePanel.GetComponentInChildren<TextMeshProUGUI>().SetText(name+" Finished The Game With: "+ScoreNum+" Points!");
+                        this.GetComponent<AudioSource>().clip=GrandFinale;
+                        this.GetComponent<AudioSource>().Play();
+                        StartCoroutine(DoFireWork());
+                    }
+                //StartCoroutine(NextLevel(0));
                 }
                 else{
                     StartCoroutine(NextLevel(SceneManager.GetActiveScene().buildIndex+1));
@@ -268,6 +286,17 @@ public class SceneManger : MonoBehaviour
             else{
                 i.enabled=false;
             }
+        }
+    }
+    private IEnumerator DoFireWork(){
+        while(true){
+            float spawnY = Random.Range
+                (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).y, Camera.main.ScreenToWorldPoint(new Vector2(0, Screen.height)).y);
+            float spawnX = Random.Range
+                (Camera.main.ScreenToWorldPoint(new Vector2(0, 0)).x, Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, 0)).x);
+            Vector2 spawnPosition = new Vector2(spawnX, spawnY);
+            Instantiate(BallDestroy.instance.Explode, spawnPosition, Quaternion.identity);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }

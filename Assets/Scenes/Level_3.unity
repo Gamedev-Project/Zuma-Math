@@ -434,7 +434,7 @@ PrefabInstance:
     - target: {fileID: 553864570853513995, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -207.4
+      value: -219.4
       objectReference: {fileID: 0}
     - target: {fileID: 553864570853513995, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
@@ -449,7 +449,7 @@ PrefabInstance:
     - target: {fileID: 610912915815482280, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 150
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2404290804728148370, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
@@ -474,12 +474,12 @@ PrefabInstance:
     - target: {fileID: 4663148595926193789, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -204.2
+      value: -265.05
       objectReference: {fileID: 0}
     - target: {fileID: 4663148595926193789, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 501.95013
+      value: 351.8562
       objectReference: {fileID: 0}
     - target: {fileID: 5658796381314379979, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
@@ -495,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_margin.x
       value: 17.509665
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733054128326752296, guid: 05ccd244e730bf8488b66c6401ddf6da,
+        type: 3}
+      propertyPath: m_margin.z
+      value: 144.97922
       objectReference: {fileID: 0}
     - target: {fileID: 6735278733930711657, guid: 05ccd244e730bf8488b66c6401ddf6da,
         type: 3}
@@ -1844,7 +1849,7 @@ VideoPlayer:
   m_AudioOutputMode: 2
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
-  m_Url: https://srv-store3.gofile.io/download/Toxedh/New_ZumaMovement.mp4
+  m_Url: https://i.imgur.com/oDP3Klz.mp4
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
@@ -2470,7 +2475,7 @@ VideoPlayer:
   m_AudioOutputMode: 2
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
-  m_Url: https://srv-store1.gofile.io/download/HVdq3N/New_ZumaClicks.mp4
+  m_Url: https://i.imgur.com/dLNXZr9.mp4
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
@@ -2892,7 +2897,7 @@ VideoPlayer:
   m_AudioOutputMode: 2
   m_TargetAudioSources: []
   m_DirectAudioVolumes: []
-  m_Url: https://srv-store1.gofile.io/download/HVdq3N/New_ZumaGoldBall.mp4
+  m_Url: https://i.imgur.com/QPx5OOP.mp4
   m_EnabledAudioTracks: 
   m_DirectAudioMutes: 
   m_ControlledAudioTrackCount: 0
