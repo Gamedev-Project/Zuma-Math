@@ -3884,7 +3884,7 @@ MonoBehaviour:
   NextBallPoint: {fileID: 1639395205}
   spawnpoint: {fileID: 257290112}
   BallGoingOut: {fileID: 8300000, guid: 9ea312ce789a4ed4e976b3925a8c8d1b, type: 3}
-  BallsToFinish: 6
+  BallsToFinish: 90
   IsFinished: 0
   keypress: 
 --- !u!1001 &1039963408
