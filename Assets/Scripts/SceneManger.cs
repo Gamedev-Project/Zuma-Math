@@ -115,8 +115,9 @@ public class SceneManger : MonoBehaviour
     IEnumerator NextLevel(int Level){
         AudioSliderVolume=AudioSlider.value;
         DifficultyLevel=DifficultySlider.value;
-        PlayerName=NameInputField.GetComponent<TMP_InputField>().text;
-
+        if(SceneManager.GetActiveScene().buildIndex==0){
+            PlayerName=NameInputField.GetComponent<TMP_InputField>().text;
+        }
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(TransitionTime);
